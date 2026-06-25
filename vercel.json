@@ -1,11 +1,6 @@
 {
-  "buildCommand": "npm run build",
+  "buildCommand": "NITRO_PRESET=vercel npm run build",
   "installCommand": "npm install",
   "framework": null,
-  "env": {
-    "NITRO_PRESET": "vercel"
-  },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ]
+  "outputDirectory": ".vercel/output"
 }
