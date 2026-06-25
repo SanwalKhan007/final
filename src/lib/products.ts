@@ -5,6 +5,9 @@ import heroShirt from "@/assets/hero-shirt.jpg";
 import heroSuit from "@/assets/hero-suit.jpg";
 import heroDenim from "@/assets/hero-denim.jpg";
 
+const linenShirt = "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&q=80";
+const chinoTrousers = "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&q=80";
+
 export type Product = {
   id: string;
   name: string;
@@ -61,6 +64,34 @@ export const PRODUCTS: Product[] = [
     sizes: ["S", "M", "L", "XL"],
     description:
       "Heavyweight 14oz raw selvedge denim from a Japanese mill, sanforized for minimal shrinkage and built to age with you. Classic Type III silhouette: pointed flap chest pockets, copper rivets, and a chain-stitched hem that will fade to a personal indigo signature with wear.",
+  },
+  {
+    id: "linen",
+    name: "White Linen Shirt",
+    detail: "100% Pure Linen",
+    sku: "LINEN_WHT_M",
+    price: 3200,
+    image: linenShirt,
+    images: [linenShirt, heroShirt, blackShirt],
+    fabric: "100% Pure Linen",
+    color: "Crisp White",
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "Crafted from breathable stone-washed linen for an effortlessly relaxed silhouette. Features a spread collar, chest patch pocket, and a slightly relaxed fit that moves with you — equally at home at a summer wedding or a seaside dinner. Gets softer and more characterful with every wash.",
+  },
+  {
+    id: "chino",
+    name: "Classic Beige Chinos",
+    detail: "Stretch Cotton Twill",
+    sku: "CHINO_BGE_32",
+    price: 3800,
+    image: chinoTrousers,
+    images: [chinoTrousers, formalSuit, denimJacket],
+    fabric: "98% Cotton, 2% Elastane Twill",
+    color: "Sand Beige",
+    sizes: ["S", "M", "L", "XL"],
+    description:
+      "A slim-tapered chino in a 4-way stretch cotton twill that moves with you all day. Mid-rise waist, clean front, and a cropped ankle cut that pairs effortlessly with loafers, white sneakers, or leather boots. The neutral sand beige tone works with virtually any top in your wardrobe.",
   },
 ];
 
