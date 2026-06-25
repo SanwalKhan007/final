@@ -5,8 +5,8 @@ import heroShirt from "@/assets/hero-shirt.jpg";
 import heroSuit from "@/assets/hero-suit.jpg";
 import heroDenim from "@/assets/hero-denim.jpg";
 
-const linenShirt = "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=800&q=80";
-const chinoTrousers = "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=800&q=80";
+const linenShirt = "https://images.unsplash.com/photo-1620012253295-c15cc3e65df4?w=800&q=80";
+const chinoTrousers = "https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=800&q=80";
 
 export type Product = {
   id: string;
