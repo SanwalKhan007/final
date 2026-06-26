@@ -349,7 +349,7 @@ function Storefront() {
       {/* Heritage Section */}
       <section id="heritage" className="border-t border-border py-20 sm:py-28 bg-card">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div className="grid md:grid-cols-1 gap-12 items-center max-w-3xl mx-auto text-center md:text-left">
             <div>
               <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Our Heritage</div>
               <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tighter mb-6">Crafted with Purpose. Built to Last.</h2>
@@ -376,10 +376,6 @@ function Storefront() {
                   <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mt-1">Local Pricing</div>
                 </div>
               </div>
-            </div>
-            <div className="grid grid-cols-2 gap-3">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Tailoring craft" className="w-full aspect-[3/4] object-cover" />
-              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Premium fabric" className="w-full aspect-[3/4] object-cover mt-8" />
             </div>
           </div>
         </div>
