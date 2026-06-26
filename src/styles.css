@@ -1,0 +1,182 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --radius: 0rem;
+  --background: oklch(0.974 0.004 80);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.145 0 0);
+  --primary-foreground: oklch(0.974 0.004 80);
+  --secondary: oklch(0.94 0.004 80);
+  --secondary-foreground: oklch(0.145 0 0);
+  --muted: oklch(0.94 0.004 80);
+  --muted-foreground: oklch(0.48 0.003 80);
+  --accent: oklch(0.49 0.16 27);
+  --accent-foreground: oklch(0.98 0 0);
+  --destructive: oklch(0.49 0.16 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.9 0.003 80);
+  --input: oklch(0.9 0.003 80);
+  --ring: oklch(0.49 0.16 27);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes receiptReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-fade-in {
+  animation: slideIn 0.6s var(--ease-out-soft) both;
+}
+@utility stagger-1 { animation-delay: 100ms; }
+@utility stagger-2 { animation-delay: 200ms; }
+@utility stagger-3 { animation-delay: 300ms; }
+@utility animate-receipt {
+  animation: receiptReveal 0.7s var(--ease-out-soft) both;
+}
+
+@keyframes receiptDrop {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  60%  { transform: translateY(8px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+.receipt-stage {
+  position: relative;
+  padding-top: 56px;
+  display: flex;
+  justify-content: center;
+}
+
+.receipt-slot {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 56px;
+  background: linear-gradient(180deg, #c8ccd1 0%, #9ea3a9 55%, #6e7378 100%);
+  border-radius: 14px 14px 6px 6px;
+  box-shadow:
+    inset 0 2px 0 rgba(255,255,255,0.6),
+    inset 0 -6px 12px rgba(0,0,0,0.35),
+    0 8px 20px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+.receipt-slot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  width: 78%;
+  height: 8px;
+  background: #0a0a0a;
+  border-radius: 4px;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.receipt-paper {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  background: #f5f3ee;
+  color: #111;
+  padding: 28px 26px 22px;
+  font-family: var(--font-mono);
+  box-shadow:
+    0 30px 60px -20px rgba(0,0,0,0.6),
+    0 0 0 1px rgba(0,0,0,0.05);
+  animation: receiptDrop 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  margin-top: 18px;
+}
+.receipt-paper::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -12px;
+  height: 12px;
+  background:
+    radial-gradient(circle at 6px 0, transparent 6px, #f5f3ee 6.5px) repeat-x;
+  background-size: 12px 12px;
+  -webkit-mask: radial-gradient(circle at 6px 0, transparent 6px, #000 6.5px) repeat-x;
+          mask: radial-gradient(circle at 6px 0, transparent 6px, #000 6.5px) repeat-x;
+  -webkit-mask-size: 12px 12px;
+          mask-size: 12px 12px;
+  background: #f5f3ee;
+}
+
+.receipt-divider {
+  border: none;
+  border-top: 1.5px dashed #777;
+  margin: 14px 0;
+}
+
+.receipt-barcode {
+  height: 54px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    #111 0 2px, transparent 2px 4px,
+    #111 4px 5px, transparent 5px 9px,
+    #111 9px 12px, transparent 12px 14px,
+    #111 14px 15px, transparent 15px 19px,
+    #111 19px 22px, transparent 22px 24px
+  );
+}
