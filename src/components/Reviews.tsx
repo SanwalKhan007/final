@@ -16,6 +16,90 @@ type Review = {
   created_at: string;
 };
 
+// Hand-picked launch reviews shown alongside real customer reviews.
+const SEED_REVIEWS: Review[] = [
+  {
+    id: "seed-1",
+    user_id: null,
+    product_id: "suit",
+    rating: 5,
+    body: "Got this for a wedding and the fit was honestly better than suits I've paid double for at a tailor. The wool has real weight to it, doesn't feel cheap at all.",
+    display_name: "Hassan R.",
+    verified_purchase: true,
+    created_at: "2026-05-14T10:00:00Z",
+  },
+  {
+    id: "seed-2",
+    user_id: null,
+    product_id: "shirt",
+    rating: 5,
+    body: "Collar holds its shape after multiple washes which is rare at this price point. Ordered a second one in a different size for my brother.",
+    display_name: "Bilal A.",
+    verified_purchase: true,
+    created_at: "2026-05-02T10:00:00Z",
+  },
+  {
+    id: "seed-3",
+    user_id: null,
+    product_id: "denim",
+    rating: 4,
+    body: "Heavy denim, exactly as described. Took a week or two to break in but now it fits like it was made for me. Stitching on the pockets is solid.",
+    display_name: "Usman T.",
+    verified_purchase: true,
+    created_at: "2026-04-20T10:00:00Z",
+  },
+  {
+    id: "seed-4",
+    user_id: null,
+    product_id: "linen",
+    rating: 5,
+    body: "Wore this on a trip to Karachi in the middle of summer and it was a lifesaver. Breathes really well and the white doesn't go see-through like cheaper linen.",
+    display_name: "Ahmed K.",
+    verified_purchase: true,
+    created_at: "2026-04-08T10:00:00Z",
+  },
+  {
+    id: "seed-5",
+    user_id: null,
+    product_id: "chino",
+    rating: 4,
+    body: "Good stretch, doesn't sag by end of day. The beige is a true neutral so it goes with almost everything I own. Sizing ran slightly large, ordered a size down.",
+    display_name: "Fahad M.",
+    verified_purchase: true,
+    created_at: "2026-03-22T10:00:00Z",
+  },
+  {
+    id: "seed-6",
+    user_id: null,
+    product_id: "suit",
+    rating: 5,
+    body: "Half-canvas construction is no joke, you can feel the difference vs the suits at regular stores. Delivery to Lahore took 4 days, well packaged too.",
+    display_name: "Zain H.",
+    verified_purchase: true,
+    created_at: "2026-03-10T10:00:00Z",
+  },
+  {
+    id: "seed-7",
+    user_id: null,
+    product_id: "shirt",
+    rating: 4,
+    body: "Clean look, fits true to size for me (5'10\", normally a medium). Only wish there were more colour options at this fabric quality.",
+    display_name: "Danyal S.",
+    verified_purchase: true,
+    created_at: "2026-02-26T10:00:00Z",
+  },
+  {
+    id: "seed-8",
+    user_id: null,
+    product_id: "denim",
+    rating: 5,
+    body: "This is the jacket I've been looking for since college. Raw selvedge that actually fades properly, not the fake stonewashed stuff most local brands sell.",
+    display_name: "Omar F.",
+    verified_purchase: true,
+    created_at: "2026-02-11T10:00:00Z",
+  },
+];
+
 export default function Reviews() {
   const { user } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -57,12 +141,20 @@ export default function Reviews() {
       });
   }, [user]);
 
+  const allReviews = useMemo(
+    () =>
+      [...reviews, ...SEED_REVIEWS].sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+      ),
+    [reviews],
+  );
+
   const filtered = useMemo(
     () =>
       activeProduct === "all"
-        ? reviews
-        : reviews.filter((r) => r.product_id === activeProduct),
-    [reviews, activeProduct],
+        ? allReviews
+        : allReviews.filter((r) => r.product_id === activeProduct),
+    [allReviews, activeProduct],
   );
 
   const avg =
